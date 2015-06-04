@@ -1,6 +1,12 @@
 <?php
 class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Case_Controller
 {
+    public function setUp()
+    {
+        $this->reset();
+        Mage::getSingleton('core/session')->setData('messages', null);
+    }
+
     public function testGetMethod()
     {
         $helperMock = $this->getHelperMock('csrfprotection/data');
@@ -33,6 +39,8 @@ class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Ca
     */
     public function testPostInvalidKey()
     {
+        $this->getRequest()->resetHeaders()->setHeader('Referer', Mage::getUrl('contacts/'));
+
         $helperMock = $this->getHelperMock('csrfprotection/data');
         $helperMock->expects($this->once())
                 ->method('validateFormKey')
@@ -43,11 +51,15 @@ class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Ca
         $this->replaceByMock('helper', 'csrfprotection/data', $helperMock);
 
         $this->getRequest()->setMethod('POST');
+        $this->getResponse()->reset();
 
         $this->dispatch('contacts/index/post/');
 
-        var_dump('todo: assert failed');
-        // todo: assert that request has stopped and that error message has been set
+        $this->assertRedirect();
+        $this->assertRedirectTo('contacts/');
+        $messages = Mage::getSingleton('core/session')->getMessages()->getItems();
+        $this->assertNotEmpty($messages);
+        $this->assertEquals(Mage::helper('core')->__("Invalid Form Key. Please refresh the page."), $messages[0]->getCode());
     }
 
     /**
@@ -68,7 +80,7 @@ class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Ca
 
         $this->dispatch('contacts/index/post/');
 
-        var_dump('todo: assert success');
+        //$this->assertResponseHttpCode(200);
         // todo: assert that request has succeeded and that success message has been set
     }
 

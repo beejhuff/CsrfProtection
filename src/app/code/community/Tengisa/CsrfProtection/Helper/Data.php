@@ -14,4 +14,9 @@ class Tengisa_CsrfProtection_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return true;
     }
+
+    public function redirect($controller)
+    {
+        
+    }
 }

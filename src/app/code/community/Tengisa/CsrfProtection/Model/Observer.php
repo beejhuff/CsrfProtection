@@ -27,7 +27,10 @@ class Tengisa_CsrfProtection_Model_Observer extends Varien_Event_Observer
                 } else {
                     $action->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
                     Mage::getSingleton('core/session')->addError($_keyErrorMsg);
-                    $action->getResponse()->setRedirect($_SERVER['HTTP_REFERER'])->sendResponse();
+                    if (isset($_SERVER['HTTP_REFERER']))
+                    {
+                        $action->getResponse()->setRedirect($_SERVER['HTTP_REFERER']);
+                    }
                 }
             }
         }
