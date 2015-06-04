@@ -5,6 +5,23 @@
 			<version>1.0.0</version>
 		</Tengisa_CsrfProtection>
 	</modules>
+	<global>
+		<events>
+			<controller_action_predispatch>
+                <observers>
+                    <csrfprotection>
+                        <class>Tengisa_CsrfProtection_Model_Observer</class>
+                        <method>hookToControllerActionPreDispatch</method>
+                    </csrfprotection>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <helpers>
+            <csrfprotection>
+                <class>Tengisa_CsrfProtection_Helper</class>
+            </csrfprotection>
+        </helpers>
+	</global>
 	<phpunit>
 		<suite>
 			<modules>
