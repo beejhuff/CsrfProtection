@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Tengisa_CsrfProtection>
+			<version>1.0.0</version>
+		</Tengisa_CsrfProtection>
+	</modules>
+	<phpunit>
+		<suite>
+			<modules>
+				<Tengisa_CsrfProtection />
+			</modules>
+		</suite>
+	</phpunit>
+</config>

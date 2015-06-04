@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Tengisa_CsrfProtection>
+			<active>true</active>
+			<codePool>community</codePool>
+		</Tengisa_CsrfProtection>
+	</modules>
+</config>
