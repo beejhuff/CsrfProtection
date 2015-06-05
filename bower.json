@@ -2,6 +2,7 @@
     "name": "third party requirements",
     "dependencies":
     {
-        "jquery": "*"
+        "jquery": "*",
+        "jasmine-ajax": "*"
     }
 }

@@ -5,6 +5,15 @@
 			<version>1.0.0</version>
 		</Tengisa_CsrfProtection>
 	</modules>
+	<frontend>
+        <layout>
+            <updates>
+                <account>
+                    <file>csrfprotection.xml</file>
+                </account>
+            </updates>
+        </layout>
+	</frontend>
 	<global>
 		<events>
 			<controller_action_predispatch>

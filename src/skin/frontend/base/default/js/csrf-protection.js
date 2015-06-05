@@ -11,14 +11,12 @@ function wrapCsrfToken(token)
             tokenElement.setAttribute('type', 'hidden');
             tokenElement.setAttribute('name', 'form_key');
             tokenElement.setAttribute('value', token);
-            form.appendChild(tokenElement);
+            if (form.querySelectorAll('[name=form_key]').length <= 0)
+            {
+                form.appendChild(tokenElement);
+            }
         }
     }
-    jQuery("body").bind("ajaxSend", function(elm, xhr, s){
-        if (s.type == "POST") {
-            xhr.setRequestHeader('X-CSRF-Token', token);
-        }
-    });
     (function() {
         var send = XMLHttpRequest.prototype.send;
         XMLHttpRequest.prototype.send = function(data) {
@@ -26,4 +24,5 @@ function wrapCsrfToken(token)
             return send.apply(this, arguments);
         };
     }());
+    return true;
 }

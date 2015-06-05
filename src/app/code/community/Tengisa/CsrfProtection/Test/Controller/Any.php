@@ -7,6 +7,17 @@ class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Ca
         Mage::getSingleton('core/session')->setData('messages', null);
     }
 
+    public function testCsrfTemplateAdded()
+    {
+        $this->dispatch('contacts/');
+
+        $this->assertLayoutLoaded();
+        $this->assertLayoutBlockActionInvoked("head", "addItem", $arguments = array("type" => "skin_js", "name" => "js/csrf-protection.js"));
+        $this->assertLayoutBlockCreated("csrfprotection");
+        $this->assertLayoutBlockTypeOf("csrfprotection", "core/template");
+        $this->assertLayoutBlockRendered("csrfprotection");
+    }
+
     public function testGetMethod()
     {
         $helperMock = $this->getHelperMock('csrfprotection/data');

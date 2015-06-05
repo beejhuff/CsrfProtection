@@ -16,6 +16,7 @@ module.exports = function(config) {
     files: [
       // third party requirements:
       'bower_components/jquery/dist/*.js',
+      'bower_components/jasmine-ajax/lib/*.js',
 
       // components:
       'src/skin/frontend/base/default/js/*.js',

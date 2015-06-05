@@ -1,10 +1,13 @@
 
 src/spec/CsrfProtectionSpec.js   spec/CsrfProtectionSpec.js
 src/skin/frontend/base/default/js/csrf-protection.js   skin/frontend/base/default/js/csrf-protection.js
+src/app/design/frontend/base/default/template/page/html/csrfprotection.phtml   app/design/frontend/base/default/template/page/html/csrfprotection.phtml
+src/app/design/frontend/base/default/layout/csrfprotection.xml   app/design/frontend/base/default/layout/csrfprotection.xml
 src/app/code/community/Tengisa/CsrfProtection/Model/Observer.php   app/code/community/Tengisa/CsrfProtection/Model/Observer.php
 src/app/code/community/Tengisa/CsrfProtection/Test/Controller/Any.php   app/code/community/Tengisa/CsrfProtection/Test/Controller/Any.php
 src/app/code/community/Tengisa/CsrfProtection/Test/Config/Module.php   app/code/community/Tengisa/CsrfProtection/Test/Config/Module.php
 src/app/code/community/Tengisa/CsrfProtection/Test/Config/Observer.php   app/code/community/Tengisa/CsrfProtection/Test/Config/Observer.php
+src/app/code/community/Tengisa/CsrfProtection/Test/Config/Layout.php   app/code/community/Tengisa/CsrfProtection/Test/Config/Layout.php
 src/app/code/community/Tengisa/CsrfProtection/etc/config.xml   app/code/community/Tengisa/CsrfProtection/etc/config.xml
 src/app/code/community/Tengisa/CsrfProtection/Helper/Data.php   app/code/community/Tengisa/CsrfProtection/Helper/Data.php
 src/app/etc/modules/installed/Tengisa_CsrfProtection.xml.sample   app/etc/modules/installed/Tengisa_CsrfProtection.xml.sample
