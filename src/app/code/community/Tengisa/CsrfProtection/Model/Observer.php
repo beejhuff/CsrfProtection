@@ -19,7 +19,7 @@ class Tengisa_CsrfProtection_Model_Observer extends Varien_Event_Observer
 
                 if ($action->getRequest()->getQuery('isAjax', false) || $action->getRequest()->getQuery('ajax', false)) {
                     $action->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
-                    $action->getResponse()->setHeader('HTTP/1.0','403',true);
+                    $action->getResponse()->setHttpResponseCode(403);
                     $action->getResponse()->setBody(Mage::helper('core')->jsonEncode(array(
                         'error' => true,
                         'message' => $_keyErrorMsg

@@ -80,8 +80,8 @@ class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Ca
 
         $this->dispatch('contacts/index/post/');
 
-        //$this->assertResponseHttpCode(200);
-        // todo: assert that request has succeeded and that success message has been set
+        $this->assertRedirect();
+        $this->assertRedirectTo('contacts/index/');
     }
 
     /**
@@ -89,6 +89,26 @@ class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Ca
     */
     public function testAjaxPostInvalidKey()
     {
+        $this->getRequest()->setQuery('ajax', 'true');
+
+        $helperMock = $this->getHelperMock('csrfprotection/data');
+        $helperMock->expects($this->once())
+                ->method('validateFormKey')
+                ->will($this->returnCallback(
+                    array($this, 'invalidFormKeyCallback')
+                ));
+
+        $this->replaceByMock('helper', 'csrfprotection/data', $helperMock);
+
+        $this->getRequest()->setMethod('POST');
+        $this->getResponse()->reset();
+
+        $this->dispatch('contacts/index/post/');
+
+        $this->assertResponseHttpCode(403);
+        $this->assertResponseBodyJson();
+        $this->assertResponseBodyContains('"error":true');
+        $this->assertResponseBodyContains(Mage::helper('core')->__("Invalid Form Key. Please refresh the page."));
     }
 
     /**
@@ -96,7 +116,24 @@ class Tengisa_CsrfProtection_Test_Controller_Any extends EcomDev_PHPUnit_Test_Ca
     */
     public function testAjaxPostValidKey()
     {
+        $this->getRequest()->setQuery('ajax', 'true');
 
+        $helperMock = $this->getHelperMock('csrfprotection/data');
+        $helperMock->expects($this->once())
+                ->method('validateFormKey')
+                ->will($this->returnCallback(
+                    array($this, 'validFormKeyCallback')
+                ));
+
+        $this->replaceByMock('helper', 'csrfprotection/data', $helperMock);
+
+        $this->getRequest()->setMethod('POST');
+        $this->getResponse()->reset();
+
+        $this->dispatch('contacts/index/post/');
+
+        $this->assertRedirect();
+        $this->assertRedirectTo('contacts/index/');
     }
 
     function invalidFormKeyCallback()
