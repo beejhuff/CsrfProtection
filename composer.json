@@ -1,8 +1,8 @@
 {
     "name": "tengisa/csrf-protection",
     "type": "magento-module",
-    "description": "Your description goes here",
-    "version": "1.0.0",
+    "description": "Protect your magento site from Cross-Site Forgery Attacks",
+    "version": "1.0.1",
     "keywords":["magento","mvc"],
     "require": {
         "php": ">=5.4.0",
